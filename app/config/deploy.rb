@@ -6,9 +6,7 @@ set   :scm,           :git
 set   :repository,    "file:///home/vertigo2/projects/symfony_capifony"
 set   :deploy_via,    :copy
 
-role  :web,           domain
-role  :app,           domain
-role  :db,            domain, :primary => true
+role  :server,           domain
 
 set   :deploy_via,    :rsync_with_remote_cache
 set   :php_bin,       "/opt/lampp/bin/php"
