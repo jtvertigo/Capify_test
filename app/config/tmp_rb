@@ -1,6 +1,6 @@
 set   :application,   "sym_test"
-set   :deploy_to,     "/home/vertigo3/sites/sym_test"
-set   :domain,        "192.168.1.40"
+set   :deploy_to,     "/home/vertigo2/projects/sym_test"
+set   :domain,        "sym_test"
 
 set   :scm,           :git
 set   :repository,    "file:///home/vertigo2/projects/symfony_capifony"
@@ -20,7 +20,7 @@ set   :keep_releases, 3
 set   :update_vendors, false
 
 # SSH-user
-set :user, "vertigo3"
+# set :user, "vertigo2"
 
 # SSH-password
 # set :password, "vert123"
