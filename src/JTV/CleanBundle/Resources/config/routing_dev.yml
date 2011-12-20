@@ -1,0 +1,3 @@
+notifies:
+    resource: "@JTVCleanBundle/Controller/NotifiesController.php"
+    type:     annotation

@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Welcome!{% endblock %}
+
+{% block stylesheets %}
+    {% stylesheets '@JTVCleanBundle/Resources/public/css/*'%}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body %}{% endblock %}
+
+{% block javascripts %}{% endblock %}
