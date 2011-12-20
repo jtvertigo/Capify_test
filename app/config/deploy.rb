@@ -22,6 +22,8 @@ set   :update_vendors, false
 # SSH-user
 set :user, "vertigo3"
 
+set :shared_files,      ["app/config/parameters.ini"]
+
 # SSH-password
 # set :password, "vert123"
 
