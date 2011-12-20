@@ -12,7 +12,6 @@ use JTV\CleanBundle\Form\NotifiesType;
 /**
  * Notifies controller.
  *
- * @Route("/")
  */
 class NotifiesController extends Controller
 {
