@@ -22,7 +22,10 @@ set   :update_vendors, false
 # SSH-user
 set :user, "vertigo3"
 
-set :shared_files,      ["app/config/parameters.ini"]
+#set :use_orm,          true
+
+#set :shared_files,        ["app/config/parameters.ini"]
+#set :shared_children,     [app_path + "/logs", web_path + "/uploads", "vendor"]
 
 # SSH-password
 # set :password, "vert123"
