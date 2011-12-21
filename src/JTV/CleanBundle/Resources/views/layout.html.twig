@@ -3,9 +3,11 @@
 {% block title %}{% endblock %}
 
 {% block stylesheets %}
-    {% stylesheets '@JTVCleanBundle/Resources/public/css/*'%}
-    <link rel="stylesheet" href="{{ asset_url }}" />
+
+    {% stylesheets filter='less' output='css/compiled-main.css' '@JTVCleanBundle/Resources/public/css/less/*' %}
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
     {% endstylesheets %}
+
 {% endblock %}
 
 {% block body %}{% endblock %}

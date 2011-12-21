@@ -33,3 +33,6 @@ set :user, "vertigo3"
 # set environment ?!
 # set :symfony_env_prod, "prod"
 # set :symfony_env_dev,  "dev"
+
+# set :serverName, "192.168.1.40" ??
+# set :domain,     "localhost" ??
