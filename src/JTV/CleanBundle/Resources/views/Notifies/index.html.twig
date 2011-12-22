@@ -20,7 +20,7 @@
         <tr>
             <td><a href="{{ path('notifies_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
             <td>{{ entity.organization }}</td>
-            <td>{% if entity.dt %}{{ entity.dt|date('Y-m-d H:i:s') }}{% endif%}</td>
+            <td>{% if entity.dt %}{{ entity.dt|date('d.m.Y H:i:s') }}{% endif%}</td>
             <td>{{ entity.type }}</td>
             <td>
                 <ul>
