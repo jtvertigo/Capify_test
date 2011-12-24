@@ -3,9 +3,11 @@
 namespace JTV\CleanBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
 use JTV\CleanBundle\Entity\Notifies;
 use JTV\CleanBundle\Form\NotifiesType;
 
@@ -50,7 +52,8 @@ class NotifiesController extends Controller
 
         return array(
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        );
+            'delete_form' => $deleteForm->createView(),        
+        );
     }
 
     /**
