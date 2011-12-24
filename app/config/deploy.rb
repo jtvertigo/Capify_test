@@ -17,7 +17,7 @@ set   :use_sudo,      false
 set   :keep_releases, 3
 
 # ./bin/vendors
-set   :update_vendors, false
+set   :update_vendors, true
 
 # SSH-user
 set :user, "vertigo3"
