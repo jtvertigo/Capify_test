@@ -1,3 +1,12 @@
+{% block calendar %}
+    <script>
+	    $(function() {
+            // $( "#datepicker" ).datepicker({ showAnim: 'drop' });
+            $( "#datepicker" ).datepicker( { altField: '#actualDate' } );
+	    });
+	</script>
+{% endblock %}
+
 <div class="topbar">
     <div class="topbar-inner">
         <div class="container-fluid">
@@ -16,8 +25,12 @@
                     </ul>
                 </li>
             </ul>
-            <form class="pull-left" action="">
-                <input type="text" placeholder="Search by date">
+            <form class="pull-left" action="" method="POST">
+                <input type="text" id="datepicker" placeholder="Search by date" size="30"/>
+
+                <input type="hidden" id="actualDate" type="text" />
+
+                <input type="submit" value="Search" />
             </form>
             <p class="pull-right">Logged in as <a href="#">username</a></p>
         </div>

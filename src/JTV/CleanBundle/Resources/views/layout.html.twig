@@ -6,8 +6,21 @@
     {% stylesheets filter='less' output='css/lessc/main.css' '@JTVCleanBundle/Resources/public/css/less/bootstrap.less' %}
     <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
     {% endstylesheets %}
+    {% stylesheets output='css/lessc/main_ui.css' '@JTVCleanBundle/Resources/public/css/jquery-ui.css' %}
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
+    {% endstylesheets %}
 {% endblock %}
 
+{% block javascripts %}
+    {% javascripts '@JTVCleanBundle/Resources/public/js/jquery-1.7.1.min.js' 
+                   '@JTVCleanBundle/Resources/public/js/jquery-ui-1.8.16.custom.min.js'
+                   '@JTVCleanBundle/Resources/public/js/jquery.ui.datepicker-ru.js'
+                   '@JTVCleanBundle/Resources/public/js/*'
+        output='js/compiled/main.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+    
 {% block body %}
     {% include 'JTVCleanBundle::topbar.html.twig' %}
 
@@ -55,9 +68,3 @@
     </div>
 {% endblock %}
 
-{% block javascripts %}
-    {% javascripts '@JTVCleanBundle/Resources/public/js/jquery-1.7.1.min.js' '@JTVCleanBundle/Resources/public/js/*' 
-        output='js/compiled/main.js' %}
-    <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-{% endblock %}
