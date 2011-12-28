@@ -1,0 +1,52 @@
+{% extends 'JTVCleanBundle::layout.html.twig' %}
+
+{% block navigation %}
+    
+{% endblock %}
+    
+{% block content1 %}
+{% if date is defined %}
+    <h1 align="center">Data for {{ date }}</h1>
+{% endif %}
+<table>
+<thead>
+    <tr>
+        <th>Id</th>
+        <th>Organization</th>
+        <th>Dt</th>
+        <th>Type</th>
+        <th>Actions</th>
+    </tr>
+</thead>
+<tbody>
+{% if entity is defined %}
+{% for note in entity %}
+    <tr>
+        <td><a href="{{ path('notifies_show', { 'id': note.id }) }}">{{ note.id }}</a></td>
+        <td>{{ note.organization }}</td>
+        <td>{% if note.dt %}{{ note.dt|date('d.m.Y H:i:s') }}{% endif%}</td>
+        <td>{{ note.type }}</td>
+        <td>
+            <ul>
+                <li>
+                    <a href="{{ path('notifies_show', { 'id': note.id }) }}">show</a>
+                </li>
+                <li>
+                    <a href="{{ path('notifies_edit', { 'id': note.id }) }}">edit</a>
+                </li>
+            </ul>
+        </td>
+    </tr>
+{% endfor %}
+{% else %}
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+{% endif %}
+</tbody>
+</table>
+{% endblock %}

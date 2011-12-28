@@ -3,13 +3,16 @@
 namespace JTV\CleanBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use JTV\CleanBundle\Entity\Notifies;
+
 use JTV\CleanBundle\Form\NotifiesType;
+use JTV\CleanBundle\Form\QueryType;
 
 /**
  * Notifies controller.
@@ -29,7 +32,12 @@ class NotifiesController extends Controller
 
         $entities = $em->getRepository('JTVCleanBundle:Notifies')->findAll();
 
-        return array('entities' => $entities);
+        $queryForm = $this->createForm(new QueryType());
+
+        return array(
+            'entities'  => $entities,
+            'queryForm' => $queryForm->createView(),
+        );
     }
 
     /**
@@ -48,11 +56,13 @@ class NotifiesController extends Controller
             throw $this->createNotFoundException('Unable to find Notifies entity.');
         }
 
+        $queryForm = $this->createForm(new QueryType());
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        
+            'delete_form' => $deleteForm->createView(),
+            'queryForm'   => $queryForm->createView(),    
         );
     }
 
@@ -66,10 +76,12 @@ class NotifiesController extends Controller
     {
         $entity = new Notifies();
         $form   = $this->createForm(new NotifiesType(), $entity);
+        $queryForm = $this->createForm(new QueryType());
 
         return array(
-            'entity' => $entity,
-            'form'   => $form->createView()
+            'entity'    => $entity,
+            'form'      => $form->createView(),
+            'queryForm' => $queryForm->createView(),
         );
     }
 
@@ -120,11 +132,13 @@ class NotifiesController extends Controller
 
         $editForm = $this->createForm(new NotifiesType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
+        $queryForm = $this->createForm(new QueryType());
 
         return array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'queryForm'   => $queryForm->createView(),
         );
     }
 
@@ -200,5 +214,43 @@ class NotifiesController extends Controller
             ->add('id', 'hidden')
             ->getForm()
         ;
+    }
+
+    /**
+     * Search logic
+     * @Route("/search", name="notifies_search")
+     * @Template()
+     */
+    public function searchAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $queryForm = $this->createForm(new QueryType());
+
+        if ($request->getMethod() == 'POST') {
+            $queryForm = $this->createForm(new QueryType);
+            $queryForm->bindRequest($request);
+
+            $em = $this->getDoctrine()->getEntityManager();
+
+            $data = $queryForm->getData(); //get data from $_POST
+
+            $ent = $this->getDoctrine()->getEntityManager()
+                ->getConnection()
+                ->prepare('SELECT * FROM Notifies WHERE date_format(dt, \'%d.%m.%Y\') = :date');
+            $ent->bindValue('date', $data['query']);
+            $ent->execute();
+            $entity = $ent->fetchAll();
+
+            return array(
+                'date'       => $data['query'],  
+                'entity'     => $entity, 
+                'queryForm'  => $queryForm->createView(),
+            );
+        }
+
+        return array(
+            'queryForm' => $queryForm->createView(),
+        );
     }
 }

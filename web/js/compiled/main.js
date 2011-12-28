@@ -812,10 +812,12 @@ jQuery(function($){
 		dateFormat: 'dd.mm.yy',
 		firstDay: 1,
 		isRTL: false,
+        showAnim: 'drop',
 		showMonthAfterYear: false,
 		yearSuffix: ''};
 	$.datepicker.setDefaults($.datepicker.regional['ru']);
 });
+
 /* ==========================================================
  * bootstrap-alerts.js v1.4.0
  * http://twitter.github.com/bootstrap/javascript.html#alerts

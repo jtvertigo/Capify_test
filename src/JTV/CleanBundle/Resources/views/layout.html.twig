@@ -3,11 +3,15 @@
 {% block title 'Main page' %}
 
 {% block stylesheets %}
-    {% stylesheets filter='less' output='css/lessc/main.css' '@JTVCleanBundle/Resources/public/css/less/bootstrap.less' %}
-    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
+    {% stylesheets filter='less' output='css/lessc/*.css' 
+        'bundles/jtvclean/css/less/bootstrap.less'
+    %}
+        <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
     {% endstylesheets %}
-    {% stylesheets output='css/lessc/main_ui.css' '@JTVCleanBundle/Resources/public/css/jquery-ui.css' %}
-    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
+    {% stylesheets filter='cssrewrite' output='css/lessc/*.css' 
+        'bundles/jtvclean/css/jquery-ui.css'
+    %}
+        <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
     {% endstylesheets %}
 {% endblock %}
 
