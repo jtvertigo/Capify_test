@@ -26,10 +26,23 @@
 {% endblock %}
     
 {% block body %}
-    {% include 'JTVCleanBundle::topbar.html.twig' %}
+    {% block calendar %}
+        <script>
+	        $(function() {
+                // $( "#datepicker" ).datepicker({ showAnim: 'drop' });
+                $( ".datepicker" ).datepicker( { altField: '#actualDate' } );
+	        });
+	    </script>
+    {% endblock %}
+
+    {% block topbar %}
+        {% include 'JTVCleanBundle::topbar.html.twig' %}
+    {% endblock %}
 
     <div class="container-fluid">
-    {% include 'JTVCleanBundle::sidebar.html.twig' %}
+    {% block sidebar %}
+        {% include 'JTVCleanBundle::sidebar.html.twig' %}
+    {% endblock %}
       
       <div class="content">
 

@@ -1,7 +1,28 @@
 {% extends 'JTVCleanBundle::layout.html.twig' %}
 
-{% block navigation %}
-    
+{% block topbar %}
+    {% use 'JTVCleanBundle::topbar.html.twig' %}
+    {% block topbar1 %}
+        {{ parent() }}
+    {% endblock %}
+    {% block navigation %}
+        <li><a href="{{ path('notifies') }}">Home</a></li>
+        <li class="active"><a href="{{ path('notifies_search') }}">Search</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li class="dropdown" data-dropdown="dropdown" >
+            <a href="#" class="dropdown-toggle">Dropdown</a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Secondary link</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Another link</a></li>
+            </ul>
+        </li>
+    {% endblock %}
+    {% block topbar2 %}
+        {{ parent() }}
+    {% endblock %}
 {% endblock %}
     
 {% block content1 %}

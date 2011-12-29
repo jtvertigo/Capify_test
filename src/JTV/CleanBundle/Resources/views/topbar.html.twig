@@ -1,17 +1,10 @@
-{% block calendar %}
-    <script>
-	    $(function() {
-            // $( "#datepicker" ).datepicker({ showAnim: 'drop' });
-            $( ".datepicker" ).datepicker( { altField: '#actualDate' } );
-	    });
-	</script>
-{% endblock %}
-
+{% block topbar1 %}
 <div class="topbar">
     <div class="topbar-inner">
         <div class="container-fluid">
             <a class="brand" href="{{ path('notifies') }}">{{ JTVProjectName }}</a>
             <ul class="nav">
+{% endblock %}
                 {% block navigation %}
                 <li class="active"><a href="{{ path('notifies') }}">Home</a></li>
                 <li><a href="{{ path('notifies_search') }}">Search</a></li>
@@ -27,6 +20,7 @@
                     </ul>
                 </li>
                 {% endblock %}
+{% block topbar2 %}
             </ul>
             <form class="pull-left" action="{{ path('notifies_search') }}" {{ form_enctype(queryForm) }} method="post">
                 {{ form_errors(queryForm.query) }}
@@ -44,3 +38,4 @@
         </div>
     </div>
 </div>
+{% endblock %}
