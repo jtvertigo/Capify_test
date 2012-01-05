@@ -78,7 +78,7 @@
     target=/knp/menu
 
 [Pagerfanta]
-    git=http://github.com/whiteoctober/pagerfanta.git
+    git=http://github.com/whiteoctober/Pagerfanta.git
 
 [WhiteOctoberPagerfantaBundle]
     git=http://github.com/whiteoctober/WhiteOctoberPagerfantaBundle.git
