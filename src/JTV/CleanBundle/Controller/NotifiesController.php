@@ -14,6 +14,10 @@ use JTV\CleanBundle\Entity\Notifies;
 use JTV\CleanBundle\Form\NotifiesType;
 use JTV\CleanBundle\Form\QueryType;
 
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Exception\NotValidCurrentPageException;
+
 /**
  * Notifies controller.
  *
@@ -26,8 +30,10 @@ class NotifiesController extends Controller
      * @Route("/", name="notifies")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+
+/*
         $em = $this->getDoctrine()->getEntityManager();
 
         $entities = $em->getRepository('JTVCleanBundle:Notifies')->findAll();
@@ -38,6 +44,24 @@ class NotifiesController extends Controller
             'entities'  => $entities,
             'queryForm' => $queryForm->createView(),
         );
+*/
+
+        $queryForm = $this->createForm(new QueryType());
+        $em = $this->getDoctrine()->getEntityManager();
+        //$entities = $em->getRepository('JTVCleanBundle:Notifies')->findAll();
+
+        //$em = $this->get('doctrine')->getEntityManager();
+        /* @var $em \Doctrine\ORM\EntityManager */
+        $query = $em->createQuery('SELECT n FROM JTVCleanBundle:Notifies n');
+        $paginator = new Pagerfanta(new DoctrineORMAdapter($query));
+        $paginator->setMaxPerPage(2);
+        $paginator->setCurrentPage($this->get('request')->query->get('page', 1), false, true);
+        return array(
+            'entities' => $paginator,
+            //'entities'  => $entities,
+            'queryForm' => $queryForm->createView(),
+        );
+
     }
 
     /**

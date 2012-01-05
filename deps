@@ -76,3 +76,8 @@
 [KnpMenu]
     git=https://github.com/KnpLabs/KnpMenu.git
     target=/knp/menu
+
+[WhiteOctoberPagerfantaBundle]
+    git=http://github.com/whiteoctober/WhiteOctoberPagerfantaBundle.git
+    target=/bundles/WhiteOctober/PagerfantaBundle
+    version=origin/symfony2.0
